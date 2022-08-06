@@ -1,0 +1,19 @@
+---
+ - name: "update web servers"
+   hosts: all
+   become: yes
+     #sudo_user: george
+   vars_files:
+    - vars/default.yml
+   
+   tasks:
+     #- name: Install Apache
+     # ansible.builtin.apt:
+     #  name: apache2
+     #  state: latest
+     # become: yes
+
+    - name: write the apache config file
+      ansible.builtin.template:
+        src: ./srv/index.html.j2
+        dest: /var/www/html/index.html
